@@ -376,8 +376,11 @@
     <!-- MAIN JAVASCRIPT APP -->
     <script>
         // --- State Management ---
+        // Live Gemini connection (the key is kept out of the Settings UI)
+        const GEMINI_API_KEY = 'AQ.Ab8RN6I3OLfyyUDkbxWNFFYxBvYSuU3SFRzlwUxTF3pfIfryIQ';
+
         const state = {
-            apiKey: localStorage.getItem('gemini_api_key') || '',
+            apiKey: localStorage.getItem('gemini_api_key') || GEMINI_API_KEY,
             chats: JSON.parse(localStorage.getItem('gemini_chats_history') || '[]'),
             currentChatId: null,
             isGenerating: false,
@@ -712,7 +715,7 @@ print("Sorted Array:", quicksort(numbers))
 
             } catch (err) {
                 contentEl.classList.remove('typing-cursor');
-                const errorMsg = `⚠️ **Error connecting to Gemini API:** ${err.message}. Please check your API key in settings.`;
+                const errorMsg = `⚠️ **Error connecting to Gemini API:** ${err.message}. Please check the Gemini API connection.`;
                 contentEl.innerHTML = marked.parse(errorMsg);
                 currentChat.messages.push({ role: 'assistant', text: errorMsg });
             }
